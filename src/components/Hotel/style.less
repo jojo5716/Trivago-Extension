@@ -1,0 +1,44 @@
+@size_hotel_data: calc(~'100% - 140px');
+
+#hotels{
+
+  margin-top: 10px;
+  height: 255px;
+  overflow-y: scroll;
+
+  .hotels__hotelCard{
+      width: 100%;
+      border: 1px solid;
+      height: 150px;
+      margin-bottom: 5px;
+
+      .hotels__hotelCard__data{
+          height: 140px;
+          position: relative;
+          float: left;
+          width: @size_hotel_data;
+
+
+          img{
+            height: 140px;
+            position: relative;
+            float: left;
+          }
+
+          .hotels__hotelCard__basicData{
+              position: relative;
+              float: left;
+              width: @size_hotel_data;
+          }
+
+          .hotels__hotelCard__rateData{
+              width: @size_hotel_data;
+          }
+
+          .hotels__hotelCard__finalPrice{
+              position: relative;
+              float: right;
+          }
+      }
+  }
+}
