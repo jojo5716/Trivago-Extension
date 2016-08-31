@@ -1,43 +1,33 @@
 {
+  "name": "Trivago",
+  "version": "0.0.1",
   "manifest_version": 2,
-  "name": "Trivago frontEnd",
-  "description": "Really crazy idea to display Trivago results. Author: Jonathan Rodríguez Alejos",
-  "version": "1.0",
-  "background": {
-    "scripts": ["./src/background.js"],
-    "persistent": false
-  },
+  "description": "Trivago test",
+  "homepage_url": "https://es.linkedin.com/in/jojo5716",
+
   "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "css": ["./dist/index.css"],
-      "js": ["./dist/index.js"]
+    { "run_at" :"document_end",
+      "matches": ["http://www.trivago.es/*"],
+      "all_frames": true,
+      "js": [
+        "./src/dependencies/annyang/annyang.js",
+        "./src/index.js"
+      ]
     }
   ],
 
-  "icons": {
-    "200": "./src/images/icon.png"
-  },
+  "web_accessible_resources":[
+    "src/dependencies/jquery.js",
+    "src/dependencies/maps.js"
+  ],
 
-    "options_page": "./src/popup.html",
-
-  "page_action": {
-    "default_icon": {
-      "16": "./src/images/icon.png"
-    },
-
-    "default_title": "Trivago",
-    "default_popup": "./src/index.html"
+  "browser_action": {
+    "default_title": "Inject!"
   },
 
   "permissions": [
-    "activeTab",
-    "webRequestBlocking",
-    "declarativeContent",
-    "https://*/*"
-
-  ],
-
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
-
+    "https://*/*",
+    "http://*/*",
+    "tabs"
+  ]
 }

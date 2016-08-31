@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './style.less';
 
 export default class Map extends Component {
@@ -9,19 +10,22 @@ export default class Map extends Component {
     }
 
     componentDidMount() {
-        mapboxgl.accessToken = 'pk.eyJ1Ijoiam9qbzU3MTYiLCJhIjoiY2lzZWw1eXNmMDAyMjJvcGZ0Y2dpaDVxdyJ9.NiMU0PBGmVISuOpcq5I53A';
-        var map = new mapboxgl.Map({
-            container: 'Map',
-            style: 'mapbox://styles/mapbox/streets-v9',
-            center: [-79.4512, 43.6568],
-            zoom: 13
-        });
+        let script = document.createElement('script');
+        script.src = 'http://maps.google.com/maps/api/js';
+        script.onload = () => {
+            new GMaps({
+                div: '#map',
+                lat: -12.043333,
+                lng: -77.028333
+            });
+        };
 
+        document.getElementsByTagName('head')[0].appendChild(script);
     }
 
     render() {
         return (
-            <div id="Map"></div>
+            <div id="map"></div>
         );
     }
 }

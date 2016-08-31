@@ -66,8 +66,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _Page = __webpack_require__(2);
 	
 	var _Page2 = _interopRequireDefault(_Page);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var script = document.createElement('script');
+	script.src = 'http://maps.googleapis.com/maps/api/js?key=AIzaSyAuyecXgGyC-OE3ZxQFpm8l-Lunh9PLqJM&sensor=true_OR_false';
+	document.getElementsByTagName('head')[0].appendChild(script);
 
 /***/ },
 /* 2 */
@@ -142,10 +146,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                category: '4'
 	            }]
 	        };
+	
 	        return _this;
 	    }
 	
 	    _createClass(Page, [{
+	        key: 'doScrappingToTrivagoResult',
+	        value: function doScrappingToTrivagoResult() {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -167,7 +175,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Page;
 	}(_react.Component);
 	
-	_reactDom2.default.render(_react2.default.createElement(Page, null), document.getElementById('page-container'));
+	(function () {
+	
+	    var newContainer = document.createElement('div');
+	    newContainer.setAttribute("id", "app-wrapper");
+	
+	    var mainContainer = document.getElementsByClassName('main-wrap')[0];
+	    mainContainer.textContent = '';
+	    mainContainer.appendChild(newContainer);
+	
+	    _reactDom2.default.render(_react2.default.createElement(Page, null), newContainer);
+	})();
 
 /***/ },
 /* 3 */
@@ -21801,7 +21819,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log(this.props.hotels);
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'hotels' },
@@ -21863,18 +21880,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(Map, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9qbzU3MTYiLCJhIjoiY2lzZWw1eXNmMDAyMjJvcGZ0Y2dpaDVxdyJ9.NiMU0PBGmVISuOpcq5I53A';
-	            var map = new mapboxgl.Map({
-	                container: 'Map',
-	                style: 'mapbox://styles/mapbox/streets-v9',
-	                center: [-79.4512, 43.6568],
-	                zoom: 13
-	            });
+	            var script = document.createElement('script');
+	            script.src = 'http://maps.google.com/maps/api/js';
+	            script.onload = function () {
+	                new GMaps({
+	                    div: '#map',
+	                    lat: -12.043333,
+	                    lng: -77.028333
+	                });
+	            };
+	
+	            document.getElementsByTagName('head')[0].appendChild(script);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement('div', { id: 'Map' });
+	            return _react2.default.createElement('div', { id: 'map' });
 	        }
 	    }]);
 	

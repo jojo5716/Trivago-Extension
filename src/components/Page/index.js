@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
 import Header from '../Header';
 import FilterHotels from '../FilterHotels';
 import Hotel from '../Hotel';
@@ -38,6 +39,8 @@ class Page extends Component {
                 }
             ]
         };
+
+
     }
 
     doScrappingToTrivagoResult() {
@@ -57,4 +60,17 @@ class Page extends Component {
     }
 }
 
-ReactDOM.render(<Page/>, document.getElementById('page-container'));
+
+
+(() => {
+
+    let newContainer = document.createElement('div');
+    newContainer.setAttribute("id", "app-wrapper");
+
+    let mainContainer = document.getElementsByClassName('main-wrap')[0];
+    mainContainer.textContent = '';
+    mainContainer.appendChild(newContainer);
+
+    ReactDOM.render(<Page/>, newContainer);
+    
+})();

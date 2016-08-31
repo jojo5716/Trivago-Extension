@@ -41,7 +41,6 @@ export default class Hotel extends Component {
     }
 
     render() {
-        console.log(this.props.hotels);
         return (
             <div id="hotels">
                 { this.props.hotels.map(this.renderHotelCard.bind(this)) }
