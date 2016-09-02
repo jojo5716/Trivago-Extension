@@ -10,7 +10,14 @@ export default class Map extends Component {
     }
 
     componentDidMount() {
-      
+        mapboxgl.accessToken = 'pk.eyJ1Ijoiam9qbzU3MTYiLCJhIjoiY2lzZWw1eXNmMDAyMjJvcGZ0Y2dpaDVxdyJ9.NiMU0PBGmVISuOpcq5I53A';
+        new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            center: [-79.4512, 43.6568],
+            zoom: 13
+        });
+
     }
 
     render() {

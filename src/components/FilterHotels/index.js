@@ -3,10 +3,6 @@ import './style.less';
 
 export default class FilterHotels extends Component {
 
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             <div id="filterHotels" className="extensionContainer__selectMenu">

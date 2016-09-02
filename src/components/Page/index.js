@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Header from '../Header';
 import FilterHotels from '../FilterHotels';
 import Hotel from '../Hotel';
 import Map from '../Map';
@@ -50,7 +49,6 @@ class Page extends Component {
     render() {
         return (
             <div id='extensionContainer'>
-                <Header/>
                 <FilterHotels/>
                 <h1>The best hotels in Palma de Mallorca ( 164 founds.)</h1>
                 <Map/>
