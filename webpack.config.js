@@ -12,7 +12,8 @@ const babelReactLoader = 'babel?' + JSON.stringify({ presets: ['react', 'es2015'
 // Webpack entry point scripts (those scripts explicitly included in the html):
 // Relative to context path
 const entry = {
-    index: ['./src/index.js']
+    index: ['./src/index.js'],
+    page: ['./src/components/Page/index.js']
 };
 
 // Webpack output config

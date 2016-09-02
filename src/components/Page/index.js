@@ -61,16 +61,6 @@ class Page extends Component {
 }
 
 
+ReactDOM.render(<Page/>, document.getElementById('page-container'));
 
-(() => {
 
-    let newContainer = document.createElement('div');
-    newContainer.setAttribute("id", "app-wrapper");
-
-    let mainContainer = document.getElementsByClassName('main-wrap')[0];
-    mainContainer.textContent = '';
-    mainContainer.appendChild(newContainer);
-
-    ReactDOM.render(<Page/>, newContainer);
-    
-})();

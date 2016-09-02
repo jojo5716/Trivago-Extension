@@ -8,17 +8,20 @@
   "content_scripts": [
     { "run_at" :"document_end",
       "matches": ["http://www.trivago.es/*"],
-      "all_frames": true,
       "js": [
         "./src/dependencies/annyang/annyang.js",
-        "./src/index.js"
+        "./src/index.js",
+        "./dist/index.js",
+        "./dist/page.js"
       ]
     }
   ],
 
   "web_accessible_resources":[
     "src/dependencies/jquery.js",
-    "src/dependencies/maps.js"
+    "src/dist/index.js",
+    "src/dist/page.js",
+    "src/index.html"
   ],
 
   "browser_action": {
@@ -29,5 +32,7 @@
     "https://*/*",
     "http://*/*",
     "tabs"
-  ]
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+
 }
