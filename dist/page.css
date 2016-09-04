@@ -1,18 +1,33 @@
 #filterHotels {
-  height: 30px;
   padding: 10px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 3px; */
+  overflow: hidden;
+  /* background: #fafafa url("http://www.knot6.com/wp-content/themes/twentytwelve-knot6/img/icon-select-arrow1.png") no-repeat 98% 55%; */
+  height: 40px;
+  width: 97%;
 }
 #filterHotels input {
-  height: 25px;
+  height: 33px;
   width: 60%;
   color: #888;
   padding-left: 10px;
   margin-right: 10px;
+  font-size: 20px;
 }
 #filterHotels select {
-  width: 36%;
-  position: relative;
-  float: right;
+  padding: 12px 8px;
+  width: 18%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+  font-size: 14px;
+  color: #fff;
+}
+#filterHotels select:focus {
+  outline: none;
 }
 #hotels {
   margin-top: 10px;
@@ -21,32 +36,95 @@
   width: 60%;
 }
 #hotels .hotels__hotelCard {
-  border: 1px solid;
+  border-top: 3px solid transparent;
+  /* box-shadow: 0 1px 1px #DC2B0C; */
   height: 150px;
   margin-bottom: 5px;
+  width: 99%;
+  background-color: #20222E;
+  padding: 5px;
+  /* -webkit-border-image: -webkit-linear-gradient(top, #FC913A 0%, #FF4E50 100%); */
+  /* border-image: linear-gradient(to bottom, #fff 0%, #DC2B0C 100%); */
+  /* border-image-slice: 1; */
+  -webkit-border-image: -webkit-linear-gradient(right, #00599B 0%, #000024 100%);
+  border-image: linear-gradient(to left, #00599B 0%, #000024 100%);
+  border-image-slice: 1;
+  color: #fff;
+  opacity: 0.8;
+}
+#hotels .hotels__hotelCard:hover {
+  opacity: 1;
+}
+#hotels .hotels__hotelCard .knockout-around:before,
+#hotels .hotels__hotelCard .knockout-around:after {
+  content: "";
+  position: absolute;
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__data {
-  height: 140px;
+  height: 100%;
   position: relative;
   float: left;
-  width: calc(100% - 140px);
+  width: 85%;
 }
-#hotels .hotels__hotelCard .hotels__hotelCard__data img {
-  height: 140px;
+#hotels .hotels__hotelCard .hotels__hotelCard__data img.hotels__hotelCard__img {
+  height: 94%;
   position: relative;
   float: left;
+  width: 30%;
+  margin: 5px;
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__basicData {
-  position: relative;
-  float: left;
-  width: calc(100% - 140px);
+  width: 100%;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__basicData .hotels__hotelCard__basicData__title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 10px 5px;
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__rateData {
-  width: calc(100% - 140px);
+  width: 70%;
 }
-#hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__finalPrice {
-  position: relative;
-  float: right;
+#hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__rateData .hotels__hotelCard__rateData__title {
+  font-weight: bold;
+  margin-left: 5px;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__rateData .hotels__hotelCard__categoyIcon {
+  background: #70ae21;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice {
+  font-size: 19px;
+  display: inline-block;
+  height: 100%;
+  /* vertical-align: middle; */
+  /* background: #e77a00; */
+  /* color: #fff; */
+  font-weight: bold;
+  width: 15%;
+  text-align: center;
+  /* position: relative; */
+  /* float: right; */
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .hotels__hotelCard__finalPrice__image {
+  background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
+  width: 95%;
+  height: 45%;
+  background-size: 380px;
+  background-position: 11px -31px;
+  background-color: transparent;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .hotels__hotelCard__finalPrice__nameCategory {
+  font-size: 10px;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .hotels__hotelCard_finalPrice__price {
+  /* vertical-align: middle; */
+  /* top: 0%; */
+  /* position: relative; */
+  /* text-align: center; */
+  border: 1px solid;
+  width: 94%;
+  background-color: green;
+  color: #fff;
+  border-radius: 5px;
 }
 #map {
   position: relative;
@@ -58,32 +136,16 @@ body {
   width: 100%;
   height: 100%;
   min-width: 400px;
-}
-html #extensionContainer .extensionContainer__selectMenu,
-body #extensionContainer .extensionContainer__selectMenu {
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  overflow: hidden;
-  background: #fafafa url("http://www.knot6.com/wp-content/themes/twentytwelve-knot6/img/icon-select-arrow1.png") no-repeat 98% 55%;
-  height: 40px;
-}
-html #extensionContainer .extensionContainer__selectMenu select,
-body #extensionContainer .extensionContainer__selectMenu select {
-  padding: 5px 8px;
-  width: 22%;
-  border: none;
-  box-shadow: none;
-  background: transparent;
-  background-image: none;
-  -webkit-appearance: none;
-}
-html #extensionContainer .extensionContainer__selectMenu select:focus,
-body #extensionContainer .extensionContainer__selectMenu select:focus {
-  outline: none;
+  font-family: 'Abel', sans-serif;
 }
 html #extensionContainer h1,
 body #extensionContainer h1 {
   margin-left: 10px;
+  color: #fff;
+}
+html .main-wrap,
+body .main-wrap {
+  background-image: url('http://d5qsyj6vaeh11.cloudfront.net/images/destinations/star%20wars/star-wars-landing/SW-node-Background.jpg');
 }
 
 /*# sourceMappingURL=page.css.map*/
