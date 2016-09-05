@@ -1,37 +1,95 @@
 #filterHotels{
 
   padding: 10px;
-  /* border: 1px solid #ccc; */
-  /* border-radius: 3px; */
+  border-radius: 9px;
   overflow: hidden;
-  /* background: #fafafa url("http://www.knot6.com/wp-content/themes/twentytwelve-knot6/img/icon-select-arrow1.png") no-repeat 98% 55%; */
-  height: 40px;
+  background: #20222E;
+  height: 60px;
   width: 97%;
+  z-index: 0;
+  margin-bottom: 10px;
 
-  input {
-    height: 33px;
-    width: 60%;
-    color: #888;
-    padding-left: 10px;
-    margin-right: 10px;
-    font-size: 20px;
+
+
+  .filterHotels__search{
+    position: relative;
+    width: 43%;
+    float: left;
+
+    input {
+      height: 33px;
+      width: 100%;
+      color: #888;
+      padding-left: 10px;
+      margin: 10px 10px 0 10px;
+      font-size: 20px;
+    }
+    h1{
+      font-size: 9px;
+      position: relative;
+      top: -3px;
+    }
+
   }
+  .filterHotels__characters{
+    width: 55%;
+    height: 100%;
+    float: right;
 
-  select {
-    padding: 12px 8px;
-    width: 18%;
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    background-image: none;
-    -webkit-appearance: none;
-    font-size: 14px;
-    color: #fff;
+    .active{
+      opacity: 1;
+      border-bottom: 1px solid yellow;
+    }
 
+    .character{
+      background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
+      height: 100%;
+      width: 11%;
+      background-size: 423px 267px;
+      background-repeat: no-repeat;
+      padding-top: 6px;
+      text-align: center;
+      display: inline-block;
+      margin-left: 34px;
+      cursor: pointer;
+      opacity: 0.76;
 
-  }
-  select:focus {
-    outline: none;
+      span{
+        position: relative;
+        bottom: -46px;
+        color: #fff;
+      }
+
+      &:hover{
+        opacity: 1;
+      }
+    }
+
+    .darkVader{
+      background-position: -179px -108px;
+      .character;
+    }
+
+    .r2d2{
+      background-position: -95px -35px;
+      .character;
+    }
+
+    .pilot{
+      background-position: -352px -35px;
+      .character;
+    }
+
+    .chewbacca{
+      background-position: -180px -35px;
+      .character;
+    }
+
+    .kylo{
+      background-position: -348px -108px; // No offence ;)
+      .character;
+    }
+
   }
 
 }

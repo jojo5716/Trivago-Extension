@@ -82,8 +82,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function changeBackGroundImage() {
 	    var mainWrap = document.getElementsByClassName('main-wrap')[0];
-	    mainWrap.style.backgroundImage = "url('https://d13yacurqjgara.cloudfront.net/users/59100/screenshots/2289693/darkwader.jpg')";
-	    mainWrap.style.backgroundColor = '#000024';
+	    mainWrap.style.backgroundImage = "url('http://a.dilcdn.com/sw/background/bg_starsL-d39a0dc14ce4.jpg')";
+	    mainWrap.style.backgroundColor = '#151515';
 	    mainWrap.style.backgroundSize = '23% 35%';
 	    mainWrap.style.backgroundRepeat = 'no-repeat';
 	    mainWrap.style.backgroundPosition = '-64px -57px';

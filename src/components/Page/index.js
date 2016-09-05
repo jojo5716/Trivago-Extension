@@ -50,7 +50,6 @@ class Page extends Component {
         return (
             <div id='extensionContainer'>
                 <FilterHotels/>
-                <h1>The best hotels in Palma de Mallorca ( 164 founds.)</h1>
                 <Map/>
                 <Hotel hotels={ this.state.hotels}/>
             </div>

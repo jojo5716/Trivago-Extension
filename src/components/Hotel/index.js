@@ -36,8 +36,7 @@ export default class Hotel extends Component {
 
                 <div className="hotels__hotelCard__finalPrice">
                     <div className="hotels__hotelCard__finalPrice__image"></div>
-                    <p className="hotels__hotelCard__finalPrice__nameCategory">Imperial solder</p>
-                    <div className="hotels__hotelCard_finalPrice__price">{hotelData.price} € > </div>
+                    <div className="hotels__hotelCard_finalPrice__price">{hotelData.price}€</div>
                 </div>
 
             </div>

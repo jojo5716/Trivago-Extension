@@ -141,11 +141,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                'div',
 	                { id: 'extensionContainer' },
 	                _react2.default.createElement(_FilterHotels2.default, null),
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'The best hotels in Palma de Mallorca ( 164 founds.)'
-	                ),
 	                _react2.default.createElement(_Map2.default, null),
 	                _react2.default.createElement(_Hotel2.default, { hotels: this.state.hotels })
 	            );
@@ -21549,14 +21544,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'filterHotels', className: 'extensionContainer__selectMenu' },
-	                _react2.default.createElement('input', { type: 'text', name: 'search', placeholder: 'Find your hotel' }),
 	                _react2.default.createElement(
-	                    'select',
-	                    null,
+	                    'div',
+	                    { className: 'filterHotels__search' },
+	                    _react2.default.createElement('input', { type: 'text', name: 'search', placeholder: 'Find your hotel' }),
 	                    _react2.default.createElement(
-	                        'option',
+	                        'h1',
 	                        null,
-	                        'Order by: Best price'
+	                        'The best hotels in Palma de Mallorca ( 164 founds.)'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'filterHotels__characters' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'darkVader' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            'Excelente'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'r2d2' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            'Muy buena'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'pilot' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            'Buena'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'chewbacca' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            'Aceptable'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'kylo' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            'Regular'
+	                        )
 	                    )
 	                )
 	            );
@@ -21676,15 +21720,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    { className: 'hotels__hotelCard__finalPrice' },
 	                    _react2.default.createElement('div', { className: 'hotels__hotelCard__finalPrice__image' }),
 	                    _react2.default.createElement(
-	                        'p',
-	                        { className: 'hotels__hotelCard__finalPrice__nameCategory' },
-	                        'Imperial solder'
-	                    ),
-	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'hotels__hotelCard_finalPrice__price' },
 	                        hotelData.price,
-	                        ' € > '
+	                        '€'
 	                    )
 	                )
 	            );
@@ -21754,11 +21793,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9qbzU3MTYiLCJhIjoiY2lzZWw1eXNmMDAyMjJvcGZ0Y2dpaDVxdyJ9.NiMU0PBGmVISuOpcq5I53A';
-	            new mapboxgl.Map({
+	            var geojson = {
+	                "type": "FeatureCollection",
+	                "features": [{
+	                    "type": "Feature",
+	                    "properties": {
+	                        "message": "Baz",
+	                        "iconSize": [60, 60]
+	                    },
+	                    "geometry": {
+	                        "type": "Point",
+	                        "coordinates": [2.6497258371718146, 39.56007902046164]
+	                    }
+	                }]
+	            };
+	
+	            var map = new mapboxgl.Map({
 	                container: 'map',
-	                style: 'mapbox://styles/mapbox/streets-v9',
-	                center: [-79.4512, 43.6568],
+	                style: 'mapbox://styles/mapbox/dark-v9',
+	                center: [2.6497258371718146, 39.56007902046164],
 	                zoom: 13
+	            });
+	
+	            // add markers to map
+	            geojson.features.forEach(function (marker) {
+	                // create a DOM element for the marker
+	                var el = document.createElement('div');
+	                el.className = 'marker';
+	                el.style.backgroundImage = 'url(https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png';
+	                el.style.backgroundPosition = '-179px -108px';
+	                el.style.backgroundSize = '423px 267px';
+	                el.style.borderRadius = '999px';
+	                el.style.width = marker.properties.iconSize[0] + 'px';
+	                el.style.height = marker.properties.iconSize[1] + 'px';
+	
+	                el.addEventListener('click', function () {
+	                    window.alert(marker.properties.message);
+	                });
+	
+	                // add marker to map
+	                new mapboxgl.Marker(el, { offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2] }).setLngLat(marker.geometry.coordinates).addTo(map);
 	            });
 	        }
 	    }, {
