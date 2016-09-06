@@ -104,8 +104,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this));
 	
+	        var trivagoResult = _this.doScrappingToTrivagoResult();
+	        _this.trivagoResultCopy = _this.copyObject(trivagoResult);
+	
 	        _this.state = {
-	            hotels: [{
+	            trivagoResult: trivagoResult
+	        };
+	
+	        return _this;
+	    }
+	
+	    _createClass(Page, [{
+	        key: 'copyObject',
+	        value: function copyObject(obj) {
+	            return JSON.parse(JSON.stringify(obj));
+	        }
+	    }, {
+	        key: 'doScrappingToTrivagoResult',
+	        value: function doScrappingToTrivagoResult() {
+	            return [{
 	                name: 'Tryp Palma Bellver',
 	                photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
 	                price: '174',
@@ -125,24 +142,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	                rate: '80',
 	                comments: '1977',
 	                category: '4'
-	            }]
-	        };
+	            }];
+	        }
+	    }, {
+	        key: 'handlerOnChangeSearch',
+	        value: function handlerOnChangeSearch(text) {
+	            var TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
 	
-	        return _this;
-	    }
+	            if (text.length >= 3) {
+	                var trivagoResult = TrivagoResultCopyOfCopy.map(function (item) {
+	                    if (item.name.indexOf(text) != -1 && item != undefined) {
+	                        return item;
+	                    }
+	                });
 	
-	    _createClass(Page, [{
-	        key: 'doScrappingToTrivagoResult',
-	        value: function doScrappingToTrivagoResult() {}
+	                console.log(trivagoResult);
+	
+	                this.setState({
+	                    trivagoResult: trivagoResult
+	                });
+	            } else {
+	                console.log(TrivagoResultCopyOfCopy);
+	
+	                this.setState({
+	                    TrivagoResult: TrivagoResultCopyOfCopy
+	                });
+	            }
+	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'extensionContainer' },
-	                _react2.default.createElement(_FilterHotels2.default, null),
+	                _react2.default.createElement(_FilterHotels2.default, { onChange: this.handlerOnChangeSearch.bind(this) }),
 	                _react2.default.createElement(_Map2.default, null),
-	                _react2.default.createElement(_Hotel2.default, { hotels: this.state.hotels })
+	                _react2.default.createElement(_Hotel2.default, { hotels: this.state.trivagoResult })
 	            );
 	        }
 	    }]);
@@ -21539,6 +21575,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    _createClass(FilterHotels, [{
+	        key: 'onChange',
+	        value: function onChange(event) {
+	            this.props.onChange(event.target.value);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -21547,7 +21588,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'filterHotels__search' },
-	                    _react2.default.createElement('input', { type: 'text', name: 'search', placeholder: 'Find your hotel' }),
+	                    _react2.default.createElement('input', {
+	                        type: 'text',
+	                        name: 'search',
+	                        placeholder: 'Which is the hotel name?',
+	                        onChange: this.onChange.bind(this)
+	                    }),
 	                    _react2.default.createElement(
 	                        'h1',
 	                        null,
@@ -21659,6 +21705,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(Hotel, [{
 	        key: 'renderHotelCard',
 	        value: function renderHotelCard(hotelData, index) {
+	            if (hotelData === undefined) {
+	                return null;
+	            }
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'hotels__hotelCard', key: index },

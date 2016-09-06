@@ -11,9 +11,21 @@ class Page extends Component {
 
     constructor() {
         super();
+        let trivagoResult = this.doScrappingToTrivagoResult();
+        this.trivagoResultCopy = this.copyObject(trivagoResult);
 
         this.state = {
-            hotels: [
+            trivagoResult
+        };
+
+    }
+
+    copyObject(obj){
+        return JSON.parse(JSON.stringify(obj));
+    }
+
+    doScrappingToTrivagoResult() {
+        return [
                 {
                     name: 'Tryp Palma Bellver',
                     photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
@@ -37,21 +49,41 @@ class Page extends Component {
                     category: '4'
                 }
             ]
-        };
-
-
     }
 
-    doScrappingToTrivagoResult() {
+    handlerOnChangeSearch(text) {
+        let TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
 
+        if (text.length >= 3) {
+            let trivagoResult = TrivagoResultCopyOfCopy.map((item) => {
+                if(item.name.indexOf(text) != -1 && item != undefined){
+                    return item;
+                }
+            });
+
+            console.log(trivagoResult);
+
+            this.setState({
+                trivagoResult
+            });
+
+
+        } else {
+            console.log(TrivagoResultCopyOfCopy);
+            
+            this.setState({
+                TrivagoResult: TrivagoResultCopyOfCopy
+            });
+        }
     }
 
     render() {
+
         return (
             <div id='extensionContainer'>
-                <FilterHotels/>
+                <FilterHotels onChange={this.handlerOnChangeSearch.bind(this)} />
                 <Map/>
-                <Hotel hotels={ this.state.hotels}/>
+                <Hotel hotels={ this.state.trivagoResult}/>
             </div>
         );
     }
@@ -59,5 +91,3 @@ class Page extends Component {
 
 
 ReactDOM.render(<Page/>, document.getElementById('page-container'));
-
-

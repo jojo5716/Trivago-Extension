@@ -5,8 +5,12 @@ export default class Hotel extends Component {
     constructor() {
         super();
     }
-
+    
     renderHotelCard(hotelData, index){
+        if(hotelData === undefined){
+            return null;
+        }
+
         return (
             <div className="hotels__hotelCard" key={index}>
                 <div className="hotels__hotelCard__data">

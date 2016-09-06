@@ -3,12 +3,21 @@ import './style.less';
 
 export default class FilterHotels extends Component {
 
+    onChange(event) {
+        this.props.onChange(event.target.value);
+    }
+
     render() {
         return (
             <div id="filterHotels" className="extensionContainer__selectMenu">
                 
                 <div className="filterHotels__search">
-                    <input type="text" name="search" placeholder="Find your hotel"/>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Which is the hotel name?"
+                        onChange={this.onChange.bind(this)}
+                    />
                     <h1>The best hotels in Palma de Mallorca ( 164 founds.)</h1>
                 </div>
 
