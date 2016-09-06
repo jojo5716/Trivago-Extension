@@ -20,7 +20,7 @@ function changeBackGroundImage() {
     var mainWrap = document.getElementsByClassName('main-wrap')[0];
     mainWrap.style.backgroundImage = "url('http://a.dilcdn.com/sw/background/bg_starsL-d39a0dc14ce4.jpg')";
     mainWrap.style.backgroundColor = '#151515';
-    mainWrap.style.backgroundSize = '23% 35%';
+    mainWrap.style.backgroundSize = '23% 100%';
     mainWrap.style.backgroundRepeat= 'no-repeat';
     mainWrap.style.backgroundPosition= '-64px -57px';
 
