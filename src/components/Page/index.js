@@ -70,9 +70,9 @@ class Page extends Component {
 
         } else {
             console.log(TrivagoResultCopyOfCopy);
-            
+
             this.setState({
-                TrivagoResult: TrivagoResultCopyOfCopy
+                trivagoResult: TrivagoResultCopyOfCopy
             });
         }
     }

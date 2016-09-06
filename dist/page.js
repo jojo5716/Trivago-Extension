@@ -165,7 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                console.log(TrivagoResultCopyOfCopy);
 	
 	                this.setState({
-	                    TrivagoResult: TrivagoResultCopyOfCopy
+	                    trivagoResult: TrivagoResultCopyOfCopy
 	                });
 	            }
 	        }
