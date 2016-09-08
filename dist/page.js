@@ -141,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                otherPrices: [],
 	                rate: '80',
 	                comments: '1977',
-	                category: '4'
+	                category: 'darkvader'
 	            }];
 	        }
 	    }, {
@@ -150,11 +150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
 	
 	            if (text.length >= 3) {
-	                var trivagoResult = TrivagoResultCopyOfCopy.map(function (item) {
-	                    if (item.name.indexOf(text) != -1 && item != undefined) {
-	                        return item;
-	                    }
-	                });
+	                var trivagoResult = this.handlerFilterHotels(text);
 	
 	                console.log(trivagoResult);
 	
@@ -170,13 +166,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	    }, {
+	        key: 'handlerFilterHotels',
+	        value: function handlerFilterHotels(textToFilter) {
+	            var filterBy = arguments.length <= 1 || arguments[1] === undefined ? 'name' : arguments[1];
+	
+	            var TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
+	
+	            var trivagoResult = TrivagoResultCopyOfCopy.filter(function (item) {
+	                if (item[filterBy].indexOf(textToFilter) != -1 && item != undefined) {
+	                    return item;
+	                }
+	            });
+	
+	            return trivagoResult;
+	        }
+	    }, {
+	        key: 'handlerOnClickCharacter',
+	        value: function handlerOnClickCharacter(character) {
+	            var trivagoResult = this.handlerFilterHotels(character, 'category');
+	
+	            this.setState({
+	                trivagoResult: trivagoResult
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'extensionContainer' },
-	                _react2.default.createElement(_FilterHotels2.default, { onChange: this.handlerOnChangeSearch.bind(this) }),
+	                _react2.default.createElement(_FilterHotels2.default, {
+	                    onChange: this.handlerOnChangeSearch.bind(this),
+	                    onClick: this.handlerOnClickCharacter.bind(this)
+	                }),
 	                _react2.default.createElement(_Map2.default, null),
 	                _react2.default.createElement(_Hotel2.default, { hotels: this.state.trivagoResult })
 	            );
@@ -307,25 +330,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cachedSetTimeout;
 	var cachedClearTimeout;
 	
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
 	(function () {
 	    try {
-	        cachedSetTimeout = setTimeout;
-	    } catch (e) {
-	        cachedSetTimeout = function () {
-	            throw new Error('setTimeout is not defined');
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
 	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
 	    }
 	    try {
-	        cachedClearTimeout = clearTimeout;
-	    } catch (e) {
-	        cachedClearTimeout = function () {
-	            throw new Error('clearTimeout is not defined');
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
 	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
 	    }
 	} ())
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
 	        return setTimeout(fun, 0);
 	    }
 	    try {
@@ -346,6 +384,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
 	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
 	        return clearTimeout(marker);
 	    }
 	    try {
@@ -21580,8 +21623,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.props.onChange(event.target.value);
 	        }
 	    }, {
+	        key: 'onClick',
+	        value: function onClick(character) {
+	            this.props.onClick(character);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'filterHotels', className: 'extensionContainer__selectMenu' },
@@ -21605,7 +21655,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    { className: 'filterHotels__characters' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'darkVader' },
+	                        { className: 'darkVader', onClick: function onClick() {
+	                                return _this2.onClick('darkvader');
+	                            } },
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
@@ -21614,7 +21666,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'r2d2' },
+	                        { className: 'r2d2', onClick: function onClick() {
+	                                return _this2.onClick('r2d2');
+	                            } },
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
@@ -21623,7 +21677,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'pilot' },
+	                        { className: 'pilot', onClick: function onClick() {
+	                                return _this2.onClick('pilot');
+	                            } },
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
@@ -21632,7 +21688,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'chewbacca' },
+	                        { className: 'chewbacca', onClick: function onClick() {
+	                                return _this2.onClick('chewbacca');
+	                            } },
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
@@ -21641,7 +21699,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'kylo' },
+	                        { className: 'kylo', onClick: function onClick() {
+	                                return _this2.onClick('kylo');
+	                            } },
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
@@ -21781,11 +21841,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'hotels' },
-	                this.props.hotels.map(this.renderHotelCard.bind(this))
-	            );
+	
+	            if (this.props.hotels.length > 0) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { id: 'hotels' },
+	                    this.props.hotels.map(this.renderHotelCard.bind(this))
+	                );
+	            } else {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(
+	                        'h1',
+	                        null,
+	                        'No hotels found.'
+	                    )
+	                );
+	            }
 	        }
 	    }]);
 	
@@ -21854,6 +21927,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    "geometry": {
 	                        "type": "Point",
 	                        "coordinates": [2.6497258371718146, 39.56007902046164]
+	                    }
+	                }, {
+	                    "type": "Feature",
+	                    "properties": {
+	                        "message": "Baz",
+	                        "iconSize": [60, 60]
+	                    },
+	                    "geometry": {
+	                        "type": "Point",
+	                        "coordinates": [2.65454, 39.56642]
 	                    }
 	                }]
 	            };

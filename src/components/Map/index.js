@@ -26,6 +26,19 @@ export default class Map extends Component {
                             2.6497258371718146, 39.56007902046164
                         ]
                     }
+                } ,
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "message": "Baz",
+                        "iconSize": [60, 60]
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            2.65454, 39.56642
+                        ]
+                    }
                 }
             ]
         };

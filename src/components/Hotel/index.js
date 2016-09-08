@@ -48,10 +48,20 @@ export default class Hotel extends Component {
     }
 
     render() {
-        return (
-            <div id="hotels">
-                { this.props.hotels.map(this.renderHotelCard.bind(this)) }
-            </div>
-        );
+
+        if(this.props.hotels.length > 0){
+            return (
+                <div id="hotels">
+                    { this.props.hotels.map(this.renderHotelCard.bind(this)) }
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <h1>No hotels found.</h1>
+                </div>
+            );
+        }
+
     }
 }

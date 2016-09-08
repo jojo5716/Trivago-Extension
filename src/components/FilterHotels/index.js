@@ -7,6 +7,10 @@ export default class FilterHotels extends Component {
         this.props.onChange(event.target.value);
     }
 
+    onClick(character) {
+        this.props.onClick(character);
+    }
+
     render() {
         return (
             <div id="filterHotels" className="extensionContainer__selectMenu">
@@ -22,23 +26,23 @@ export default class FilterHotels extends Component {
                 </div>
 
                 <div className="filterHotels__characters">
-                    <div className="darkVader">
+                    <div className="darkVader" onClick={() => this.onClick('darkvader')}>
                         <span>Excelente</span>
                     </div>
 
-                    <div className="r2d2">
+                    <div className="r2d2" onClick={() => this.onClick('r2d2')}>
                         <span>Muy buena</span>
                     </div>
 
-                    <div className="pilot">
+                    <div className="pilot" onClick={() => this.onClick('pilot')}>
                         <span>Buena</span>
                     </div>
 
-                    <div className="chewbacca">
+                    <div className="chewbacca" onClick={() => this.onClick('chewbacca')}>
                         <span>Aceptable</span>
                     </div>
 
-                    <div className="kylo">
+                    <div className="kylo" onClick={() => this.onClick('kylo')}>
                         <span>Regular</span>
                     </div>
                 </div>

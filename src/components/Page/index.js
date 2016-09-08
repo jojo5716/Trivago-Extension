@@ -46,7 +46,7 @@ class Page extends Component {
                     otherPrices: [],
                     rate: '80',
                     comments: '1977',
-                    category: '4'
+                    category: 'darkvader'
                 }
             ]
     }
@@ -55,11 +55,7 @@ class Page extends Component {
         let TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
 
         if (text.length >= 3) {
-            let trivagoResult = TrivagoResultCopyOfCopy.map((item) => {
-                if(item.name.indexOf(text) != -1 && item != undefined){
-                    return item;
-                }
-            });
+            let trivagoResult = this.handlerFilterHotels(text);
 
             console.log(trivagoResult);
 
@@ -77,11 +73,33 @@ class Page extends Component {
         }
     }
 
+    handlerFilterHotels(textToFilter, filterBy='name') {
+        let TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
+
+        let trivagoResult = TrivagoResultCopyOfCopy.filter((item) => {
+            if(item[filterBy].indexOf(textToFilter) != -1 && item != undefined){
+                return item;
+            }
+        });
+
+        return trivagoResult;
+    }
+
+    handlerOnClickCharacter(character) {
+        let trivagoResult = this.handlerFilterHotels(character, 'category');
+
+        this.setState({
+            trivagoResult
+        });
+    }
     render() {
 
         return (
             <div id='extensionContainer'>
-                <FilterHotels onChange={this.handlerOnChangeSearch.bind(this)} />
+                <FilterHotels
+                    onChange={this.handlerOnChangeSearch.bind(this)}
+                    onClick={this.handlerOnClickCharacter.bind(this)}
+                />
                 <Map/>
                 <Hotel hotels={ this.state.trivagoResult}/>
             </div>
