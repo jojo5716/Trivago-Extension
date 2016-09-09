@@ -34,6 +34,16 @@ export default class Hotel extends Component {
                                 <span className="hotels__hotelCard__otherPrices__name">Booking</span>
                                 <span className="hotels__hotelCard__otherPrices__price">250€</span>
                             </li>
+
+                            <li>
+                                <span className="hotels__hotelCard__otherPrices__name">Booking</span>
+                                <span className="hotels__hotelCard__otherPrices__price">250€</span>
+                            </li>
+
+                            <li>
+                                <span className="hotels__hotelCard__otherPrices__name">Booking</span>
+                                <span className="hotels__hotelCard__otherPrices__price">250€</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

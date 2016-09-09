@@ -1,5 +1,3 @@
-@size_hotel_data: calc(~'100% - 140px');
-
 #hotels{
 
   margin-top: 10px;
@@ -9,15 +7,12 @@
 
   .hotels__hotelCard{
     border-top: 3px solid transparent;
-    /* box-shadow: 0 1px 1px #DC2B0C; */
     height: 150px;
     margin-bottom: 5px;
     width: 97%;
     background-color: #20222E;
     padding: 5px;
-    /* -webkit-border-image: -webkit-linear-gradient(top, #FC913A 0%, #FF4E50 100%); */
-    /* border-image: linear-gradient(to bottom, #fff 0%, #DC2B0C 100%); */
-    /* border-image-slice: 1; */
+
     -webkit-border-image: -webkit-linear-gradient(right, #00599B 0%, #000024 100%);
     border-image: linear-gradient(to left, #00599B 0%, #000024 100%);
     border-image-slice: 1;
@@ -63,6 +58,7 @@
 
           .hotels__hotelCard__rateData{
               width: 70%;
+              margin-top: 4px;
 
             .hotels__hotelCard__rateData__title{
               font-weight: bold;
@@ -74,6 +70,26 @@
             }
           }
 
+        .hotels__hotelCard__otherPrices{
+          li {
+            width: 13%;
+            position: relative;
+            float: left;
+            top: 70px;
+            left: 10px;
+            list-style-type: none;
+            text-align: center;
+
+            .hotels__hotelCard__otherPrices__name{
+              display: block;
+            }
+
+            .hotels__hotelCard__otherPrices__price{
+              color: #BE3644;
+              font-weight: bold;
+            }
+          }
+        }
 
           }
     .hotels__hotelCard__finalPrice{

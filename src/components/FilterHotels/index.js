@@ -38,7 +38,7 @@ export default class FilterHotels extends Component {
                         <span>Buena</span>
                     </div>
 
-                    <div className="chewbacca" onClick={() => this.onClick('chewbacca')}>
+                    <div className="c3po" onClick={() => this.onClick('chewbacca')}>
                         <span>Aceptable</span>
                     </div>
 

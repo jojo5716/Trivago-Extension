@@ -57,16 +57,12 @@ class Page extends Component {
         if (text.length >= 3) {
             let trivagoResult = this.handlerFilterHotels(text);
 
-            console.log(trivagoResult);
-
             this.setState({
                 trivagoResult
             });
 
 
         } else {
-            console.log(TrivagoResultCopyOfCopy);
-
             this.setState({
                 trivagoResult: TrivagoResultCopyOfCopy
             });

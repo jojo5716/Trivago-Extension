@@ -152,14 +152,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (text.length >= 3) {
 	                var trivagoResult = this.handlerFilterHotels(text);
 	
-	                console.log(trivagoResult);
-	
 	                this.setState({
 	                    trivagoResult: trivagoResult
 	                });
 	            } else {
-	                console.log(TrivagoResultCopyOfCopy);
-	
 	                this.setState({
 	                    trivagoResult: TrivagoResultCopyOfCopy
 	                });
@@ -21668,7 +21664,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'chewbacca', onClick: function onClick() {
+	                        { className: 'c3po', onClick: function onClick() {
 	                                return _this2.onClick('chewbacca');
 	                            } },
 	                        _react2.default.createElement(
@@ -21788,6 +21784,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _react2.default.createElement(
 	                            'ul',
 	                            null,
+	                            _react2.default.createElement(
+	                                'li',
+	                                null,
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'hotels__hotelCard__otherPrices__name' },
+	                                    'Booking'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'hotels__hotelCard__otherPrices__price' },
+	                                    '250€'
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'li',
+	                                null,
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'hotels__hotelCard__otherPrices__name' },
+	                                    'Booking'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'hotels__hotelCard__otherPrices__price' },
+	                                    '250€'
+	                                )
+	                            ),
 	                            _react2.default.createElement(
 	                                'li',
 	                                null,

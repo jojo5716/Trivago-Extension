@@ -39,9 +39,8 @@
   background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   height: 100%;
   width: 68px;
-  background-size: 423px 267px;
+  background-size: 423px 272px;
   background-repeat: no-repeat;
-  padding-top: 6px;
   text-align: center;
   display: inline-block;
   margin-left: 34px;
@@ -57,13 +56,12 @@
   opacity: 1;
 }
 #filterHotels .filterHotels__characters .darkVader {
-  background-position: -179px -108px;
+  background-position: -177px -113px;
   background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   height: 100%;
   width: 68px;
-  background-size: 423px 267px;
+  background-size: 423px 272px;
   background-repeat: no-repeat;
-  padding-top: 6px;
   text-align: center;
   display: inline-block;
   margin-left: 34px;
@@ -79,13 +77,12 @@
   opacity: 1;
 }
 #filterHotels .filterHotels__characters .r2d2 {
-  background-position: -95px -35px;
+  background-position: -93px -40px;
   background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   height: 100%;
   width: 68px;
-  background-size: 423px 267px;
+  background-size: 423px 272px;
   background-repeat: no-repeat;
-  padding-top: 6px;
   text-align: center;
   display: inline-block;
   margin-left: 34px;
@@ -101,13 +98,12 @@
   opacity: 1;
 }
 #filterHotels .filterHotels__characters .pilot {
-  background-position: -351px -35px;
+  background-position: -348px -39px;
   background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   height: 100%;
   width: 68px;
-  background-size: 423px 267px;
+  background-size: 423px 272px;
   background-repeat: no-repeat;
-  padding-top: 6px;
   text-align: center;
   display: inline-block;
   margin-left: 34px;
@@ -122,36 +118,34 @@
 #filterHotels .filterHotels__characters .pilot:hover {
   opacity: 1;
 }
-#filterHotels .filterHotels__characters .chewbacca {
-  background-position: -180px -35px;
+#filterHotels .filterHotels__characters .c3po {
+  background-position: -180px -39px;
   background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   height: 100%;
   width: 68px;
-  background-size: 423px 267px;
+  background-size: 423px 272px;
   background-repeat: no-repeat;
-  padding-top: 6px;
   text-align: center;
   display: inline-block;
   margin-left: 34px;
   cursor: pointer;
   opacity: 0.76;
 }
-#filterHotels .filterHotels__characters .chewbacca span {
+#filterHotels .filterHotels__characters .c3po span {
   position: relative;
   bottom: -46px;
   color: #fff;
 }
-#filterHotels .filterHotels__characters .chewbacca:hover {
+#filterHotels .filterHotels__characters .c3po:hover {
   opacity: 1;
 }
 #filterHotels .filterHotels__characters .kylo {
-  background-position: -348px -108px;
+  background-position: -348px -113px;
   background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   height: 100%;
   width: 68px;
-  background-size: 423px 267px;
+  background-size: 423px 272px;
   background-repeat: no-repeat;
-  padding-top: 6px;
   text-align: center;
   display: inline-block;
   margin-left: 34px;
@@ -174,15 +168,11 @@
 }
 #hotels .hotels__hotelCard {
   border-top: 3px solid transparent;
-  /* box-shadow: 0 1px 1px #DC2B0C; */
   height: 150px;
   margin-bottom: 5px;
   width: 97%;
   background-color: #20222E;
   padding: 5px;
-  /* -webkit-border-image: -webkit-linear-gradient(top, #FC913A 0%, #FF4E50 100%); */
-  /* border-image: linear-gradient(to bottom, #fff 0%, #DC2B0C 100%); */
-  /* border-image-slice: 1; */
   -webkit-border-image: -webkit-linear-gradient(right, #00599B 0%, #000024 100%);
   border-image: linear-gradient(to left, #00599B 0%, #000024 100%);
   border-image-slice: 1;
@@ -228,6 +218,22 @@
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__rateData .hotels__hotelCard__categoyIcon {
   background: #70ae21;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__otherPrices li {
+  width: 13%;
+  position: relative;
+  float: left;
+  top: 32px;
+  left: 10px;
+  list-style-type: none;
+  text-align: center;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__otherPrices li .hotels__hotelCard__otherPrices__name {
+  display: block;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__otherPrices li .hotels__hotelCard__otherPrices__price {
+  color: #BE3644;
+  font-weight: bold;
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__finalPrice {
   font-size: 19px;
