@@ -211,6 +211,7 @@
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__rateData {
   width: 70%;
+  margin-top: 4px;
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__data .hotels__hotelCard__rateData .hotels__hotelCard__rateData__title {
   font-weight: bold;
@@ -223,7 +224,7 @@
   width: 13%;
   position: relative;
   float: left;
-  top: 32px;
+  top: 70px;
   left: 10px;
   list-style-type: none;
   text-align: center;

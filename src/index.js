@@ -17,11 +17,12 @@ function activateExtension() {
     clearInterval(detectingURL);
 
     let existIframe = checkIframeExist();
-    if(!existIframe){
+    if (!existIframe) {
         var newDiv = document.createElement('iframe');
         newDiv.src = chrome.extension.getURL('src/index.html');
         newDiv.id = 'iframe-trivago-extension';
-
+        newDiv.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
+        
         var container = document.getElementsByClassName('main-wrap');
 
         if(container) {
@@ -32,6 +33,13 @@ function activateExtension() {
             newDiv.style.minHeight = '600px';
             newDiv.style.overflow = 'hidden';
             newDiv.style.border = '0';
+            // newDiv.onload = () => {
+            //     console.log("---------");
+            //     console.log(window.document);
+            //     const logo = window.document.getElementsByClassName('siteheader__logo-link')[0];
+            //     localStorage.setItem('trivago', logo.getAttribute('href'));
+            //
+            // };
 
             changeBackGroundImage();
 

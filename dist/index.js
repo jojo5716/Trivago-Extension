@@ -85,6 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var newDiv = document.createElement('iframe');
 	        newDiv.src = chrome.extension.getURL('src/index.html');
 	        newDiv.id = 'iframe-trivago-extension';
+	        newDiv.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
 	
 	        var container = document.getElementsByClassName('main-wrap');
 	
@@ -96,6 +97,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            newDiv.style.minHeight = '600px';
 	            newDiv.style.overflow = 'hidden';
 	            newDiv.style.border = '0';
+	            // newDiv.onload = () => {
+	            //     console.log("---------");
+	            //     console.log(window.document);
+	            //     const logo = window.document.getElementsByClassName('siteheader__logo-link')[0];
+	            //     localStorage.setItem('trivago', logo.getAttribute('href'));
+	            //
+	            // };
 	
 	            changeBackGroundImage();
 	
@@ -110,7 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var mainWrap = document.getElementsByClassName('main-wrap')[0];
 	        mainWrap.style.backgroundImage = "url('http://a.dilcdn.com/sw/background/bg_starsL-d39a0dc14ce4.jpg')";
 	        mainWrap.style.backgroundColor = '#151515';
-	        mainWrap.style.backgroundSize = '23% 100%';
+	        mainWrap.style.backgroundSize = '40% 100%';
 	        mainWrap.style.backgroundRepeat = 'no-repeat';
 	        mainWrap.style.backgroundPosition = '-64px -57px';
 	    }

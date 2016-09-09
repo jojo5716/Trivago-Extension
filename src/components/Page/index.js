@@ -5,6 +5,8 @@ import FilterHotels from '../FilterHotels';
 import Hotel from '../Hotel';
 import Map from '../Map';
 
+import  Scrapping  from '../../scrapping';
+
 import './style.less';
 
 class Page extends Component {
@@ -103,5 +105,8 @@ class Page extends Component {
     }
 }
 
+window.addEventListener('message', function (e) {
+    Scrapping.doScraping(window.top.document)
+});
 
 ReactDOM.render(<Page/>, document.getElementById('page-container'));

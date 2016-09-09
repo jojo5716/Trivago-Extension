@@ -86,7 +86,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Map2 = _interopRequireDefault(_Map);
 	
-	__webpack_require__(185);
+	var _scrapping = __webpack_require__(185);
+	
+	var _scrapping2 = _interopRequireDefault(_scrapping);
+	
+	__webpack_require__(186);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -204,6 +208,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    return Page;
 	}(_react.Component);
+	
+	window.addEventListener('message', function (e) {
+	    _scrapping2.default.doScraping(window.top.document);
+	});
 	
 	_reactDom2.default.render(_react2.default.createElement(Page, null), document.getElementById('page-container'));
 
@@ -21993,6 +22001,21 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ },
 /* 184 */,
 /* 185 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	function doScraping(parentElement) {
+	
+	    console.log($);
+	}
+	
+	module.exports = {
+	    doScraping: doScraping
+	};
+
+/***/ },
+/* 186 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
