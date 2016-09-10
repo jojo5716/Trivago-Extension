@@ -5,15 +5,14 @@ import FilterHotels from '../FilterHotels';
 import Hotel from '../Hotel';
 import Map from '../Map';
 
-import  Scrapping  from '../../scrapping';
 
 import './style.less';
 
 class Page extends Component {
 
-    constructor() {
+    constructor(props) {
         super();
-        let trivagoResult = this.doScrappingToTrivagoResult();
+        let trivagoResult = props.hotels;
         this.trivagoResultCopy = this.copyObject(trivagoResult);
 
         this.state = {
@@ -105,8 +104,7 @@ class Page extends Component {
     }
 }
 
-window.addEventListener('message', function (e) {
-    Scrapping.doScraping(window.top.document)
-});
+chrome.storage.local.get('TrivagoHotels', function (result) {
+    ReactDOM.render(<Page hotels={result.TrivagoHotels}/>, document.getElementById('page-container'));
 
-ReactDOM.render(<Page/>, document.getElementById('page-container'));
+});

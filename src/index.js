@@ -1,3 +1,6 @@
+import  Scrapping  from './scrapping';
+
+
 var detectingURL = setInterval(function(){
     const currentUrl = window.location.hostname;
     const isTrivagoURL = currentUrl.indexOf('trivago.es') != -1;
@@ -25,23 +28,17 @@ function activateExtension() {
         
         var container = document.getElementsByClassName('main-wrap');
 
-        if(container) {
-            //container.textContent = '';
+        if(container && container[0] ) {
             container[0].appendChild(newDiv);
 
             newDiv.style.width = '100%';
             newDiv.style.minHeight = '600px';
             newDiv.style.overflow = 'hidden';
             newDiv.style.border = '0';
-            // newDiv.onload = () => {
-            //     console.log("---------");
-            //     console.log(window.document);
-            //     const logo = window.document.getElementsByClassName('siteheader__logo-link')[0];
-            //     localStorage.setItem('trivago', logo.getAttribute('href'));
-            //
-            // };
 
             changeBackGroundImage();
+            const hotels = Scrapping.doScraping(window.document);
+            chrome.storage.local.set({'TrivagoHotels': hotels}, function() {});
 
             var oldContainer = document.getElementsByClassName('centerwrapper');
             if(oldContainer){

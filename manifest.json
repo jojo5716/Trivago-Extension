@@ -8,6 +8,7 @@
   "content_scripts": [
     { "run_at" :"document_end",
       "matches": ["http://www.trivago.es/*"],
+      "all_frames":true,
       "js": [
         "./src/dependencies/jquery.js",
         "./src/dependencies/annyang/annyang.js",
@@ -32,8 +33,9 @@
   "permissions": [
     "https://*/*",
     "http://*/*",
-    "tabs"
+    "tabs",
+    "storage"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' ; object-src 'self'"
 
 }

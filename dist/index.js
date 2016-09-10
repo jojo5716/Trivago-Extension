@@ -59,9 +59,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	var _scrapping = __webpack_require__(2);
+	
+	var _scrapping2 = _interopRequireDefault(_scrapping);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var detectingURL = setInterval(function () {
 	    var currentUrl = window.location.hostname;
@@ -89,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        var container = document.getElementsByClassName('main-wrap');
 	
-	        if (container) {
+	        if (container && container[0]) {
 	            //container.textContent = '';
 	            container[0].appendChild(newDiv);
 	
@@ -106,6 +112,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // };
 	
 	            changeBackGroundImage();
+	            var hotels = _scrapping2.default.doScraping(window.document);
+	            console.log("-----------------------------2222");
+	            console.log(hotels);
+	            chrome.storage.local.set({ 'TrivagoHotels': hotels }, function () {});
 	
 	            var oldContainer = document.getElementsByClassName('centerwrapper');
 	            if (oldContainer) {
@@ -123,6 +133,70 @@ return /******/ (function(modules) { // webpackBootstrap
 	        mainWrap.style.backgroundPosition = '-64px -57px';
 	    }
 	}
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	function doScraping(parentElement) {
+	
+	    var parent = $(parentElement);
+	    var hotels = parent.find('.hotellist li.hotel');
+	    var hotelsJSON = [];
+	
+	    for (var i = 0; i <= hotels.length; i++) {
+	        var hotel = $(hotels[i]);
+	
+	        try {
+	            console.log(i);
+	            var photo = $(hotel).find('.item__image-wrapper img').attr('src');
+	            var elementName = $(hotel).find('.item__details .item__name');
+	            var name = elementName.text().trim();
+	            console.log(elementName.attr('class'));
+	            var category = elementName.attr('class').match(/\d/g)[1];
+	            console.log($(hotel).find('.item__review .icon-ic').attr('class'));
+	            var rates = $(hotel).find('.item__review .icon-ic').attr('class').match(/\d/g)[1];
+	            var otherPricesElements = $(hotel).find('.deal-other__top-alternatives li');
+	            var otherPrices = [];
+	            var bestPrice = $(hotel).find('.item__best-price').text();
+	
+	            for (var j = 0; j <= otherPricesElements.length; j++) {
+	                var buttonContent = $(otherPricesElements[j]).find('button');
+	                var priceElement = buttonContent.find('strong');
+	                var price = priceElement.text();
+	                // Remove element to get later only the name
+	                priceElement.remove();
+	                var name = buttonContent.text();
+	
+	                otherPrices.push({
+	                    name: name,
+	                    price: price
+	                });
+	            }
+	
+	            hotelsJSON.push({
+	                name: name,
+	                photo: photo,
+	                category: category,
+	                rates: rates,
+	                otherPrices: otherPrices,
+	                price: bestPrice
+	            });
+	        } catch (err) {
+	            console.log(err);
+	            console.log(i);
+	            console.log("???????????????????????????");
+	        }
+	    }
+	
+	    return hotelsJSON;
+	}
+	
+	module.exports = {
+	    doScraping: doScraping
+	};
 
 /***/ }
 /******/ ])
