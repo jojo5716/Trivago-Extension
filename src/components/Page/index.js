@@ -12,16 +12,16 @@ class Page extends Component {
 
     constructor(props) {
         super();
+
         let trivagoResult = props.hotels || this.doScrappingToTrivagoResult();
         this.trivagoResultCopy = this.copyObject(trivagoResult);
 
         this.state = {
             trivagoResult
         };
-
     }
 
-    copyObject(obj){
+    copyObject(obj) {
         return JSON.parse(JSON.stringify(obj));
     }
 
@@ -31,22 +31,16 @@ class Page extends Component {
                     name: 'Tryp Palma Bellver',
                     photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
                     price: '174',
-                    discount: '40',
-                    priceBeforeDiscount: '200',
                     otherPrices: [],
-                    rate: '80',
-                    comments: '1977',
-                    category: '4'
+                    rate: '8',
+                    category: 'r2d2'
                 },
                 {
                     name: 'Saratoga',
                     photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
-                    price: '174',
-                    discount: '40',
-                    priceBeforeDiscount: '200',
-                    otherPrices: [],
-                    rate: '80',
-                    comments: '1977',
+                    price: '174€',
+                    otherPrices: [{name: 'Booking.com', price: '300€'}],
+                    rate: '8',
                     category: 'darkvader'
                 }
             ]
@@ -54,27 +48,24 @@ class Page extends Component {
 
     handlerOnChangeSearch(text) {
         let TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
+        let trivagoResult;
 
         if (text.length >= 3) {
-            let trivagoResult = this.handlerFilterHotels(text);
-
-            this.setState({
-                trivagoResult
-            });
-
-
+            trivagoResult = this.handlerFilterHotels(text)
         } else {
-            this.setState({
-                trivagoResult: TrivagoResultCopyOfCopy
-            });
+            trivagoResult = TrivagoResultCopyOfCopy;
         }
+
+        this.setState({
+            trivagoResult
+        });
     }
 
     handlerFilterHotels(textToFilter, filterBy='name') {
         let TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
 
         let trivagoResult = TrivagoResultCopyOfCopy.filter((item) => {
-            if(item[filterBy].indexOf(textToFilter) != -1 && item != undefined){
+            if (item[filterBy].indexOf(textToFilter) != -1) {
                 return item;
             }
         });
@@ -83,10 +74,8 @@ class Page extends Component {
     }
 
     handlerOnClickCharacter(character) {
-        let trivagoResult = this.handlerFilterHotels(character, 'rates');
-
         this.setState({
-            trivagoResult
+            trivagoResult: this.handlerFilterHotels(character, 'rates')
         });
     }
 
@@ -106,6 +95,6 @@ class Page extends Component {
 }
 
 chrome.storage.local.get('TrivagoHotels', function (result) {
-    ReactDOM.render(<Page hotels={result.TrivagoHotels}/>,
+    ReactDOM.render(<Page hotels={ result.TrivagoHotels } />,
         document.getElementById('page-container'));
 });

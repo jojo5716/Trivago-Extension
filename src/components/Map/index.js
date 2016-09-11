@@ -83,7 +83,7 @@ export default class Map extends Component {
                 .addTo(map);
         });
 
-        map.setLayoutProperty('country-label-lg', 'text-field', '{name_english}');
+        //map.setLayoutProperty('country-label-lg', 'text-field', '{name_english}');
 
     }
 

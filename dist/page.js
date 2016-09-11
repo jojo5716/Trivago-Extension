@@ -105,6 +105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this));
 	
+	        console.log(props.hotel);
 	        var trivagoResult = props.hotels || _this.doScrappingToTrivagoResult();
 	        _this.trivagoResultCopy = _this.copyObject(trivagoResult);
 	
@@ -127,21 +128,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                name: 'Tryp Palma Bellver',
 	                photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
 	                price: '174',
-	                discount: '40',
-	                priceBeforeDiscount: '200',
 	                otherPrices: [],
-	                rate: '80',
-	                comments: '1977',
-	                category: '4'
+	                rate: '8',
+	                category: 'r2d2'
 	            }, {
 	                name: 'Saratoga',
 	                photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
-	                price: '174',
-	                discount: '40',
-	                priceBeforeDiscount: '200',
-	                otherPrices: [],
-	                rate: '80',
-	                comments: '1977',
+	                price: '174€',
+	                otherPrices: [{ name: 'Booking.com', price: '300€' }],
+	                rate: '8',
 	                category: 'darkvader'
 	            }];
 	        }
@@ -149,18 +144,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'handlerOnChangeSearch',
 	        value: function handlerOnChangeSearch(text) {
 	            var TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
+	            var trivagoResult = void 0;
 	
 	            if (text.length >= 3) {
-	                var trivagoResult = this.handlerFilterHotels(text);
-	
-	                this.setState({
-	                    trivagoResult: trivagoResult
-	                });
+	                trivagoResult = this.handlerFilterHotels(text);
 	            } else {
-	                this.setState({
-	                    trivagoResult: TrivagoResultCopyOfCopy
-	                });
+	                trivagoResult = TrivagoResultCopyOfCopy;
 	            }
+	
+	            this.setState({
+	                trivagoResult: trivagoResult
+	            });
 	        }
 	    }, {
 	        key: 'handlerFilterHotels',
@@ -170,7 +164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var TrivagoResultCopyOfCopy = this.copyObject(this.trivagoResultCopy);
 	
 	            var trivagoResult = TrivagoResultCopyOfCopy.filter(function (item) {
-	                if (item[filterBy].indexOf(textToFilter) != -1 && item != undefined) {
+	                if (item[filterBy].indexOf(textToFilter) != -1) {
 	                    return item;
 	                }
 	            });
@@ -180,10 +174,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'handlerOnClickCharacter',
 	        value: function handlerOnClickCharacter(character) {
-	            var trivagoResult = this.handlerFilterHotels(character, 'rates');
-	
 	            this.setState({
-	                trivagoResult: trivagoResult
+	                trivagoResult: this.handlerFilterHotels(character, 'rates')
 	            });
 	        }
 	    }, {
@@ -21980,7 +21972,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                new mapboxgl.Marker(el, { offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2] }).setLngLat(marker.geometry.coordinates).addTo(map);
 	            });
 	
-	            map.setLayoutProperty('country-label-lg', 'text-field', '{name_english}');
+	            //map.setLayoutProperty('country-label-lg', 'text-field', '{name_english}');
 	        }
 	    }, {
 	        key: 'componentDidMount',
