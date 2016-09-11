@@ -32,16 +32,18 @@ class Page extends Component {
                     photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
                     price: '174',
                     otherPrices: [],
-                    rate: '8',
-                    category: 'r2d2'
+                    rate: 'r2d2',
+                    rateInt: '8',
+                    category: new Array(3)
                 },
                 {
                     name: 'Saratoga',
                     photo: 'http://imgec.trivago.com/itemimages/37/12/37125_v8_isq.jpeg',
                     price: '174€',
                     otherPrices: [{name: 'Booking.com', price: '300€'}],
-                    rate: '8',
-                    category: 'darkvader'
+                    rate: 'darkvader',
+                    rateInt: '10',
+                    category: new Array(4)
                 }
             ]
     }

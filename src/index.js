@@ -40,9 +40,6 @@ function activateExtension() {
             const hotels = Scrapping.toTrivago(window.document);
             chrome.storage.local.set({'TrivagoHotels': hotels}, () => {});
 
-            const searchName = document.getElementById('js_querystring').value;
-            chrome.storage.local.set({'searchName': searchName}, () => {});
-
             var oldContainer = document.getElementsByClassName('centerwrapper');
             if(oldContainer){
                 oldContainer[0].style.display = 'none';
