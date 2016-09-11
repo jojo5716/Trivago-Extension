@@ -5,8 +5,8 @@ import './style.less';
 export default class Map extends Component {
     constructor() {
         super();
-        this.firstCoordenate = [];
 
+        this.firstCoordenate = [];
         this.positionCharacters = {
             'darkvader': '-180px -105px',
             'r2d2': '-97px -35px',

@@ -21610,13 +21610,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    _react2.default.createElement('input', {
 	                        type: 'text',
 	                        name: 'search',
-	                        placeholder: 'Which is the hotel name?',
+	                        placeholder: 'Do you know the name of the hotel?',
 	                        onChange: this.onChange.bind(this)
 	                    }),
 	                    _react2.default.createElement(
 	                        'h1',
 	                        null,
-	                        'The best hotels in Palma de Mallorca ( 164 founds.)'
+	                        'May the force be with you!'
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -21888,7 +21888,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this));
 	
 	        _this.firstCoordenate = [];
-	
 	        _this.positionCharacters = {
 	            'darkvader': '-180px -105px',
 	            'r2d2': '-97px -35px',

@@ -12,6 +12,7 @@ export default class FilterHotels extends Component {
     }
 
     render() {
+
         return (
             <div id="filterHotels" className="extensionContainer__selectMenu">
                 
@@ -19,10 +20,10 @@ export default class FilterHotels extends Component {
                     <input
                         type="text"
                         name="search"
-                        placeholder="Which is the hotel name?"
+                        placeholder="Do you know the name of the hotel?"
                         onChange={this.onChange.bind(this)}
                     />
-                    <h1>The best hotels in Palma de Mallorca ( 164 founds.)</h1>
+                    <h1>May the force be with you!</h1>
                 </div>
 
                 <div className="filterHotels__characters">

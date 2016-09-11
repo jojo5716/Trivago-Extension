@@ -107,6 +107,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var hotels = _scrapping2.default.toTrivago(window.document);
 	            chrome.storage.local.set({ 'TrivagoHotels': hotels }, function () {});
 	
+	            var searchName = document.getElementById('js_querystring').value;
+	            chrome.storage.local.set({ 'searchName': searchName }, function () {});
+	
 	            var oldContainer = document.getElementsByClassName('centerwrapper');
 	            if (oldContainer) {
 	                oldContainer[0].style.display = 'none';
