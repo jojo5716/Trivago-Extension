@@ -105,14 +105,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this));
 	
-	        console.log(props.hotel);
 	        var trivagoResult = props.hotels || _this.doScrappingToTrivagoResult();
 	        _this.trivagoResultCopy = _this.copyObject(trivagoResult);
 	
 	        _this.state = {
 	            trivagoResult: trivagoResult
 	        };
-	
 	        return _this;
 	    }
 	
@@ -21762,10 +21760,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'renderHotelCard',
 	        value: function renderHotelCard(hotelData, index) {
-	            if (hotelData === undefined) {
-	                return null;
-	            }
-	
 	            var classCategory = 'hotels__hotelCard__finalPrice__image ' + hotelData.rates;
 	
 	            return _react2.default.createElement(
@@ -21791,9 +21785,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _react2.default.createElement(
 	                            'span',
 	                            { className: 'hotels__hotelCard__rateData__title' },
-	                            'Muy bien - ',
+	                            'Rating: ',
 	                            hotelData.rateInt,
-	                            ' / 100'
+	                            ' / 10'
 	                        ),
 	                        _react2.default.createElement(
 	                            'span',

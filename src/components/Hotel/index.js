@@ -29,10 +29,6 @@ export default class Hotel extends Component {
     }
 
     renderHotelCard(hotelData, index) {
-        if (hotelData === undefined) {
-            return null;
-        }
-
         const classCategory = `hotels__hotelCard__finalPrice__image ${hotelData.rates}`;
 
         return (
@@ -48,7 +44,7 @@ export default class Hotel extends Component {
                     </div>
 
                     <div className="hotels__hotelCard__rateData">
-                        <span className="hotels__hotelCard__rateData__title">Muy bien - {hotelData.rateInt} / 100</span>
+                        <span className="hotels__hotelCard__rateData__title">Rating: {hotelData.rateInt} / 10</span>
                         <span className="hotels__hotelCard__rateData__category">{hotelData.comments}</span>
                     </div>
 
@@ -70,7 +66,7 @@ export default class Hotel extends Component {
 
     render() {
 
-        if(this.props.hotels.length > 0){
+        if (this.props.hotels.length > 0) {
             return (
                 <div id="hotels">
                     { this.props.hotels.map(this.renderHotelCard.bind(this)) }
