@@ -80,13 +80,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}, 3000);
 	
 	function checkIframeExist() {
-	    return document.getElementById('iframe-trivago-extension') != null;
+	    return document.getElementById('iframe-trivago-extension') !== null;
 	}
 	
 	function activateExtension() {
 	    clearInterval(detectingURL);
-	
 	    var existIframe = checkIframeExist();
+	
 	    if (!existIframe) {
 	        var newDiv = document.createElement('iframe');
 	        newDiv.src = chrome.extension.getURL('src/index.html');
@@ -104,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            newDiv.style.border = '0';
 	
 	            changeBackGroundImage();
-	            var hotels = _scrapping2.default.doScraping(window.document);
+	            var hotels = _scrapping2.default.toTrivago(window.document);
 	            chrome.storage.local.set({ 'TrivagoHotels': hotels }, function () {});
 	
 	            var oldContainer = document.getElementsByClassName('centerwrapper');
@@ -130,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	function doScraping(parentElement) {
+	function toTrivago(parentElement) {
 	
 	    var CHARACTER = {
 	        '5': 'darkvader',
@@ -197,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	
 	module.exports = {
-	    doScraping: doScraping
+	    toTrivago: toTrivago
 	};
 
 /***/ }

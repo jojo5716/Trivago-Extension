@@ -1,4 +1,4 @@
-function doScraping(parentElement) {
+function toTrivago(parentElement) {
 
     const CHARACTER = {
         '5': 'darkvader',
@@ -8,38 +8,38 @@ function doScraping(parentElement) {
         '1': 'kylo'
     };
 
-    var parent = $(parentElement);
-    var hotels = parent.find('.hotellist li.hotel');
-    var hotelsJSON = [];
+    const parent = $(parentElement);
+    const hotels = parent.find('.hotellist li.hotel');
+    let hotelsJSON = [];
 
-    for (var i = 0; i <= hotels.length; i++) {
-        var hotel = $(hotels[i]);
+    for (let i = 0; i <= hotels.length; i++) {
+        const hotel = $(hotels[i]);
 
         try{
-            var photo = $(hotel).find('.item__image-wrapper img').attr('src');
+            let photo = $(hotel).find('.item__image-wrapper img').attr('src');
 
             if (photo.indexOf('http://') === -1){
                 photo = `http://${photo}`;
             }
             
-            var elementName = $(hotel).find('.item__details .item__name');
-            var name = elementName.text().trim();
-            var category = elementName.attr('class').match(/\d/g)[1];
-            var rates = $(hotel).find('.item__review .icon-ic').attr('class').match(/\d/g)[1];
-            var otherPricesElements = $(hotel).find('.deal-other__top-alternatives li');
-            var otherPrices = [];
-            var bestPrice = $(hotel).find('.item__best-price').text();
-            var coordenatesElement = $(hotel).find('.slideout_content_container');
-            var longitude = coordenatesElement.data('lng');
-            var latitude = coordenatesElement.data('lat');
+            const elementName = $(hotel).find('.item__details .item__name');
+            const name = elementName.text().trim();
+            const category = elementName.attr('class').match(/\d/g)[1];
+            const rates = $(hotel).find('.item__review .icon-ic').attr('class').match(/\d/g)[1];
+            const otherPricesElements = $(hotel).find('.deal-other__top-alternatives li');
+            let otherPrices = [];
+            const bestPrice = $(hotel).find('.item__best-price').text();
+            const coordenatesElement = $(hotel).find('.slideout_content_container');
+            const longitude = coordenatesElement.data('lng');
+            const latitude = coordenatesElement.data('lat');
 
-            for (var j = 0; j <= otherPricesElements.length; j++) {
-                var buttonContent = $(otherPricesElements[j]).find('button');
-                var priceElement = buttonContent.find('strong');
-                var price = priceElement.text();
+            for (let j = 0; j <= otherPricesElements.length; j++) {
+                const buttonContent = $(otherPricesElements[j]).find('button');
+                let priceElement = buttonContent.find('strong');
+                const price = priceElement.text();
                 // Remove element to get later only the name
                 priceElement.remove();
-                var nameOtherPrice = buttonContent.text();
+                const nameOtherPrice = buttonContent.text();
 
                 otherPrices.push({
                     name: nameOtherPrice,
@@ -66,5 +66,5 @@ function doScraping(parentElement) {
 
 
 module.exports = {
-    doScraping
+    toTrivago
 };

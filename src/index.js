@@ -1,7 +1,7 @@
 import  Scrapping  from './scrapping';
 
 
-var detectingURL = setInterval(function(){
+var detectingURL = setInterval(() => {
     const currentUrl = window.location.hostname;
     const isTrivagoURL = currentUrl.indexOf('trivago.es') != -1;
     const isTrivagoSearch = window.location.search && window.location.search.length > 0;
@@ -13,15 +13,15 @@ var detectingURL = setInterval(function(){
 
 
 function checkIframeExist() {
-    return document.getElementById('iframe-trivago-extension') != null;
+    return document.getElementById('iframe-trivago-extension') !== null;
 }
 
 function activateExtension() {
     clearInterval(detectingURL);
-
     let existIframe = checkIframeExist();
+
     if (!existIframe) {
-        var newDiv = document.createElement('iframe');
+        let newDiv = document.createElement('iframe');
         newDiv.src = chrome.extension.getURL('src/index.html');
         newDiv.id = 'iframe-trivago-extension';
         newDiv.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
@@ -37,14 +37,13 @@ function activateExtension() {
             newDiv.style.border = '0';
 
             changeBackGroundImage();
-            const hotels = Scrapping.doScraping(window.document);
+            const hotels = Scrapping.toTrivago(window.document);
             chrome.storage.local.set({'TrivagoHotels': hotels}, function() {});
 
             var oldContainer = document.getElementsByClassName('centerwrapper');
             if(oldContainer){
                 oldContainer[0].style.display = 'none';
             }
-
         }
     }
 
