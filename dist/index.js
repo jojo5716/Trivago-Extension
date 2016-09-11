@@ -96,25 +96,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var container = document.getElementsByClassName('main-wrap');
 	
 	        if (container && container[0]) {
-	            //container.textContent = '';
 	            container[0].appendChild(newDiv);
 	
 	            newDiv.style.width = '100%';
 	            newDiv.style.minHeight = '600px';
 	            newDiv.style.overflow = 'hidden';
 	            newDiv.style.border = '0';
-	            // newDiv.onload = () => {
-	            //     console.log("---------");
-	            //     console.log(window.document);
-	            //     const logo = window.document.getElementsByClassName('siteheader__logo-link')[0];
-	            //     localStorage.setItem('trivago', logo.getAttribute('href'));
-	            //
-	            // };
 	
 	            changeBackGroundImage();
 	            var hotels = _scrapping2.default.doScraping(window.document);
-	            console.log("-----------------------------2222");
-	            console.log(hotels);
 	            chrome.storage.local.set({ 'TrivagoHotels': hotels }, function () {});
 	
 	            var oldContainer = document.getElementsByClassName('centerwrapper');
@@ -142,6 +132,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function doScraping(parentElement) {
 	
+	    var CHARACTER = {
+	        '5': 'darkvader',
+	        '4': 'r2d2',
+	        '3': 'pilot',
+	        '2': 'c3po',
+	        '1': 'kylo'
+	    };
+	
 	    var parent = $(parentElement);
 	    var hotels = parent.find('.hotellist li.hotel');
 	    var hotelsJSON = [];
@@ -150,17 +148,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var hotel = $(hotels[i]);
 	
 	        try {
-	            console.log(i);
 	            var photo = $(hotel).find('.item__image-wrapper img').attr('src');
+	
+	            if (photo.indexOf('http://') === -1) {
+	                photo = 'http://' + photo;
+	            }
+	
 	            var elementName = $(hotel).find('.item__details .item__name');
 	            var name = elementName.text().trim();
-	            console.log(elementName.attr('class'));
 	            var category = elementName.attr('class').match(/\d/g)[1];
-	            console.log($(hotel).find('.item__review .icon-ic').attr('class'));
 	            var rates = $(hotel).find('.item__review .icon-ic').attr('class').match(/\d/g)[1];
 	            var otherPricesElements = $(hotel).find('.deal-other__top-alternatives li');
 	            var otherPrices = [];
 	            var bestPrice = $(hotel).find('.item__best-price').text();
+	            var coordenatesElement = $(hotel).find('.slideout_content_container');
+	            var longitude = coordenatesElement.data('lng');
+	            var latitude = coordenatesElement.data('lat');
 	
 	            for (var j = 0; j <= otherPricesElements.length; j++) {
 	                var buttonContent = $(otherPricesElements[j]).find('button');
@@ -168,10 +171,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var price = priceElement.text();
 	                // Remove element to get later only the name
 	                priceElement.remove();
-	                var name = buttonContent.text();
+	                var nameOtherPrice = buttonContent.text();
 	
 	                otherPrices.push({
-	                    name: name,
+	                    name: nameOtherPrice,
 	                    price: price
 	                });
 	            }
@@ -179,16 +182,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            hotelsJSON.push({
 	                name: name,
 	                photo: photo,
-	                category: category,
-	                rates: rates,
+	                category: new Array(parseInt(category, 10)),
+	                rates: CHARACTER[rates],
+	                rateInt: rates,
 	                otherPrices: otherPrices,
-	                price: bestPrice
+	                price: bestPrice,
+	                longitude: longitude,
+	                latitude: latitude
 	            });
-	        } catch (err) {
-	            console.log(err);
-	            console.log(i);
-	            console.log("???????????????????????????");
-	        }
+	        } catch (err) {}
 	    }
 	
 	    return hotelsJSON;

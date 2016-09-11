@@ -27,23 +27,23 @@ export default class FilterHotels extends Component {
 
                 <div className="filterHotels__characters">
                     <div className="darkVader" onClick={() => this.onClick('darkvader')}>
-                        <span>Excelente</span>
+                        <span>Excellent</span>
                     </div>
 
                     <div className="r2d2" onClick={() => this.onClick('r2d2')}>
-                        <span>Muy buena</span>
+                        <span>Very good</span>
                     </div>
 
                     <div className="pilot" onClick={() => this.onClick('pilot')}>
-                        <span>Buena</span>
+                        <span>Good</span>
                     </div>
 
-                    <div className="c3po" onClick={() => this.onClick('chewbacca')}>
-                        <span>Aceptable</span>
+                    <div className="c3po" onClick={() => this.onClick('c3po')}>
+                        <span>Ok</span>
                     </div>
 
                     <div className="kylo" onClick={() => this.onClick('kylo')}>
-                        <span>Regular</span>
+                        <span>Poor</span>
                     </div>
                 </div>
 

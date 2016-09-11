@@ -224,7 +224,7 @@
   width: 13%;
   position: relative;
   float: left;
-  top: 70px;
+  top: 10px;
   left: 10px;
   list-style-type: none;
   text-align: center;
@@ -250,12 +250,26 @@
   /* float: right; */
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .hotels__hotelCard__finalPrice__image {
-  background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   width: 117px;
   height: 74%;
+  background-image: url('https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png');
   background-size: 650px 400px;
-  background-position: -9px -37px;
   background-color: transparent;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .darkvader {
+  background-position: -266px -136px;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .r2d2 {
+  background-position: -137px -38px;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .pilot {
+  background-position: -534px -39px;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .c3po {
+  background-position: -273px -32px;
+}
+#hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .kylo {
+  background-position: -534px -139px;
 }
 #hotels .hotels__hotelCard .hotels__hotelCard__finalPrice .hotels__hotelCard_finalPrice__price {
   /* vertical-align: middle; */

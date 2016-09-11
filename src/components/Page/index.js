@@ -12,7 +12,7 @@ class Page extends Component {
 
     constructor(props) {
         super();
-        let trivagoResult = props.hotels;
+        let trivagoResult = props.hotels || this.doScrappingToTrivagoResult();
         this.trivagoResultCopy = this.copyObject(trivagoResult);
 
         this.state = {
@@ -83,12 +83,13 @@ class Page extends Component {
     }
 
     handlerOnClickCharacter(character) {
-        let trivagoResult = this.handlerFilterHotels(character, 'category');
+        let trivagoResult = this.handlerFilterHotels(character, 'rates');
 
         this.setState({
             trivagoResult
         });
     }
+
     render() {
 
         return (
@@ -97,14 +98,14 @@ class Page extends Component {
                     onChange={this.handlerOnChangeSearch.bind(this)}
                     onClick={this.handlerOnClickCharacter.bind(this)}
                 />
-                <Map/>
-                <Hotel hotels={ this.state.trivagoResult}/>
+                <Map hotels={this.state.trivagoResult}/>
+                <Hotel hotels={this.state.trivagoResult}/>
             </div>
         );
     }
 }
 
 chrome.storage.local.get('TrivagoHotels', function (result) {
-    ReactDOM.render(<Page hotels={result.TrivagoHotels}/>, document.getElementById('page-container'));
-
+    ReactDOM.render(<Page hotels={result.TrivagoHotels}/>,
+        document.getElementById('page-container'));
 });

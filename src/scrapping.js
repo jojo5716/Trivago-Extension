@@ -1,5 +1,13 @@
 function doScraping(parentElement) {
 
+    const CHARACTER = {
+        '5': 'darkvader',
+        '4': 'r2d2',
+        '3': 'pilot',
+        '2': 'c3po',
+        '1': 'kylo'
+    };
+
     var parent = $(parentElement);
     var hotels = parent.find('.hotellist li.hotel');
     var hotelsJSON = [];
@@ -8,17 +16,22 @@ function doScraping(parentElement) {
         var hotel = $(hotels[i]);
 
         try{
-            console.log(i);
             var photo = $(hotel).find('.item__image-wrapper img').attr('src');
+
+            if (photo.indexOf('http://') === -1){
+                photo = `http://${photo}`;
+            }
+            
             var elementName = $(hotel).find('.item__details .item__name');
             var name = elementName.text().trim();
-            console.log(elementName.attr('class'));
             var category = elementName.attr('class').match(/\d/g)[1];
-            console.log($(hotel).find('.item__review .icon-ic').attr('class'));
             var rates = $(hotel).find('.item__review .icon-ic').attr('class').match(/\d/g)[1];
             var otherPricesElements = $(hotel).find('.deal-other__top-alternatives li');
             var otherPrices = [];
             var bestPrice = $(hotel).find('.item__best-price').text();
+            var coordenatesElement = $(hotel).find('.slideout_content_container');
+            var longitude = coordenatesElement.data('lng');
+            var latitude = coordenatesElement.data('lat');
 
             for (var j = 0; j <= otherPricesElements.length; j++) {
                 var buttonContent = $(otherPricesElements[j]).find('button');
@@ -26,10 +39,10 @@ function doScraping(parentElement) {
                 var price = priceElement.text();
                 // Remove element to get later only the name
                 priceElement.remove();
-                var name = buttonContent.text();
+                var nameOtherPrice = buttonContent.text();
 
                 otherPrices.push({
-                    name,
+                    name: nameOtherPrice,
                     price
                 });
             }
@@ -37,21 +50,20 @@ function doScraping(parentElement) {
             hotelsJSON.push({
                 name,
                 photo,
-                category,
-                rates,
+                category: new Array(parseInt(category, 10)),
+                rates: CHARACTER[rates],
+                rateInt: rates,
                 otherPrices,
-                price: bestPrice
+                price: bestPrice,
+                longitude,
+                latitude
             });
-        }catch (err) {
-            console.log(err);
-            console.log(i);
-            console.log("???????????????????????????");
-        }
-
+        } catch (err) {}
     }
 
     return hotelsJSON;
 }
+
 
 module.exports = {
     doScraping

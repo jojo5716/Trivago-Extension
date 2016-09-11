@@ -103,10 +103,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function Page(props) {
 	        _classCallCheck(this, Page);
 	
-	        //let trivagoResult = this.doScrappingToTrivagoResult();
 	        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this));
 	
-	        var trivagoResult = props.hotels;
+	        var trivagoResult = props.hotels || _this.doScrappingToTrivagoResult();
 	        _this.trivagoResultCopy = _this.copyObject(trivagoResult);
 	
 	        _this.state = {
@@ -181,7 +180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'handlerOnClickCharacter',
 	        value: function handlerOnClickCharacter(character) {
-	            var trivagoResult = this.handlerFilterHotels(character, 'category');
+	            var trivagoResult = this.handlerFilterHotels(character, 'rates');
 	
 	            this.setState({
 	                trivagoResult: trivagoResult
@@ -198,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    onChange: this.handlerOnChangeSearch.bind(this),
 	                    onClick: this.handlerOnClickCharacter.bind(this)
 	                }),
-	                _react2.default.createElement(_Map2.default, null),
+	                _react2.default.createElement(_Map2.default, { hotels: this.state.trivagoResult }),
 	                _react2.default.createElement(_Hotel2.default, { hotels: this.state.trivagoResult })
 	            );
 	        }
@@ -207,16 +206,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Page;
 	}(_react.Component);
 	
-	/*window.addEventListener('message', function (e) {
-	    Scrapping.doScraping(window.top.document)
-	});*/
-	
 	chrome.storage.local.get('TrivagoHotels', function (result) {
-	    console.log("^***********");
-	    console.log(result);
 	    _reactDom2.default.render(_react2.default.createElement(Page, { hotels: result.TrivagoHotels }), document.getElementById('page-container'));
 	});
-	//ReactDOM.render(<Page/>, document.getElementById('page-container'));
 
 /***/ },
 /* 4 */
@@ -21648,7 +21640,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
-	                            'Excelente'
+	                            'Excellent'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -21659,7 +21651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
-	                            'Muy buena'
+	                            'Very good'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -21670,18 +21662,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
-	                            'Buena'
+	                            'Good'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'c3po', onClick: function onClick() {
-	                                return _this2.onClick('chewbacca');
+	                                return _this2.onClick('c3po');
 	                            } },
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
-	                            'Aceptable'
+	                            'Ok'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -21692,7 +21684,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _react2.default.createElement(
 	                            'span',
 	                            null,
-	                            'Regular'
+	                            'Poor'
 	                        )
 	                    )
 	                )
@@ -21750,11 +21742,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    _createClass(Hotel, [{
+	        key: 'renderRateStar',
+	        value: function renderRateStar(imgData, index) {
+	            return _react2.default.createElement('img', { className: 'hotels__hotelCard__basicData__category',
+	                key: index,
+	                src: 'data:image/svg+xml;charset=US-ASCII,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"13"%20height%3D"12"%20viewBox%3D"0%200%2013%2012"><path%20d%3D"M11.983%2C5.211a0.667%2C0.667%2C0%2C0%2C0-.545-0.534l-3.6-.6L6.626%2C0.457a0.665%2C0.665%2C0%2C0%2C0-1.263%2C0L4.155%2C4.077l-3.6.6A0.666%2C0.666%2C0%2C0%2C0%2C.319%2C5.9L3.195%2C7.631%2C2.029%2C11.124a0.666%2C0.666%2C0%2C0%2C0%2C1.047.732L5.995%2C9.521l2.917%2C2.334a0.667%2C0.667%2C0%2C0%2C0%2C1.049-.732L8.8%2C7.629%2C11.671%2C5.9a0.662%2C0.662%2C0%2C0%2C0%2C.312-0.694h0v0Z"%20fill%3D"%23f6ab3f"%2F><%2Fsvg>' });
+	        }
+	    }, {
+	        key: 'renderOtherPrices',
+	        value: function renderOtherPrices(priceDate, index) {
+	
+	            return _react2.default.createElement(
+	                'li',
+	                { key: index },
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'hotels__hotelCard__otherPrices__name' },
+	                    priceDate.name
+	                ),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'hotels__hotelCard__otherPrices__price' },
+	                    priceDate.price
+	                )
+	            );
+	        }
+	    }, {
 	        key: 'renderHotelCard',
 	        value: function renderHotelCard(hotelData, index) {
 	            if (hotelData === undefined) {
 	                return null;
 	            }
+	
+	            var classCategory = 'hotels__hotelCard__finalPrice__image ' + hotelData.rates;
 	
 	            return _react2.default.createElement(
 	                'div',
@@ -21770,7 +21790,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            'span',
 	                            { className: 'hotels__hotelCard__basicData__title' },
 	                            hotelData.name,
-	                            _react2.default.createElement('img', { className: 'hotels__hotelCard__basicData__category', src: 'data:image/svg+xml;charset=US-ASCII,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"13"%20height%3D"12"%20viewBox%3D"0%200%2013%2012"><path%20d%3D"M11.983%2C5.211a0.667%2C0.667%2C0%2C0%2C0-.545-0.534l-3.6-.6L6.626%2C0.457a0.665%2C0.665%2C0%2C0%2C0-1.263%2C0L4.155%2C4.077l-3.6.6A0.666%2C0.666%2C0%2C0%2C0%2C.319%2C5.9L3.195%2C7.631%2C2.029%2C11.124a0.666%2C0.666%2C0%2C0%2C0%2C1.047.732L5.995%2C9.521l2.917%2C2.334a0.667%2C0.667%2C0%2C0%2C0%2C1.049-.732L8.8%2C7.629%2C11.671%2C5.9a0.662%2C0.662%2C0%2C0%2C0%2C.312-0.694h0v0Z"%20fill%3D"%23f6ab3f"%2F><%2Fsvg>' })
+	                            hotelData.category.map(this.renderRateStar.bind(this))
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -21780,7 +21800,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            'span',
 	                            { className: 'hotels__hotelCard__rateData__title' },
 	                            'Muy bien - ',
-	                            hotelData.rate,
+	                            hotelData.rateInt,
 	                            ' / 100'
 	                        ),
 	                        _react2.default.createElement(
@@ -21795,60 +21815,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _react2.default.createElement(
 	                            'ul',
 	                            null,
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'hotels__hotelCard__otherPrices__name' },
-	                                    'Booking'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'hotels__hotelCard__otherPrices__price' },
-	                                    '250€'
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'hotels__hotelCard__otherPrices__name' },
-	                                    'Booking'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'hotels__hotelCard__otherPrices__price' },
-	                                    '250€'
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'hotels__hotelCard__otherPrices__name' },
-	                                    'Booking'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'hotels__hotelCard__otherPrices__price' },
-	                                    '250€'
-	                                )
-	                            )
+	                            hotelData.otherPrices.map(this.renderOtherPrices.bind(this))
 	                        )
 	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'hotels__hotelCard__finalPrice' },
-	                    _react2.default.createElement('div', { className: 'hotels__hotelCard__finalPrice__image' }),
+	                    _react2.default.createElement('div', { className: classCategory }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'hotels__hotelCard_finalPrice__price' },
-	                        hotelData.price,
-	                        '€'
+	                        hotelData.price
 	                    )
 	                )
 	            );
@@ -21918,49 +21896,72 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Map = function (_Component) {
 	    _inherits(Map, _Component);
 	
-	    function Map(props) {
+	    function Map() {
 	        _classCallCheck(this, Map);
 	
 	        var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this));
 	
-	        _this.state = {};
+	        _this.firstCoordenate = [];
+	
+	        _this.positionCharacters = {
+	            'darkvader': '-180px -105px',
+	            'r2d2': '-97px -35px',
+	            'pilot': '-350px -34px',
+	            'c3po': '-180px -32px',
+	            'kylo': '-350px -106px'
+	        };
 	        return _this;
 	    }
 	
 	    _createClass(Map, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
+	        key: 'returnJSONCoordenates',
+	        value: function returnJSONCoordenates(hotels) {
+	            var jsonCoordenates = [];
+	
+	            for (var i = 0; i <= hotels.length; i++) {
+	                var hotel = hotels[i];
+	
+	                if (i === 0) {
+	                    this.firstCoordenate = [parseFloat(hotel.longitude, 10), parseFloat(hotel.latitude, 10)];
+	                }
+	
+	                if (hotel !== undefined) {
+	                    jsonCoordenates.push({
+	                        "type": "Feature",
+	                        "properties": {
+	                            "message": "Baz",
+	                            "iconSize": [60, 60]
+	                        },
+	                        "geometry": {
+	                            "type": "Point",
+	                            "coordinates": [parseFloat(hotel.longitude, 10), parseFloat(hotel.latitude, 10)]
+	                        },
+	                        "positionImage": this.positionCharacters[hotel.rates]
+	
+	                    });
+	                }
+	            }
+	
+	            return jsonCoordenates;
+	        }
+	    }, {
+	        key: 'setMap',
+	        value: function setMap() {
+	            // Clean current map
+	            var mapContainer = document.getElementById('map');
+	            mapContainer.textContent = '';
+	
 	            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9qbzU3MTYiLCJhIjoiY2lzZWw1eXNmMDAyMjJvcGZ0Y2dpaDVxdyJ9.NiMU0PBGmVISuOpcq5I53A';
 	            var geojson = {
 	                "type": "FeatureCollection",
-	                "features": [{
-	                    "type": "Feature",
-	                    "properties": {
-	                        "message": "Baz",
-	                        "iconSize": [60, 60]
-	                    },
-	                    "geometry": {
-	                        "type": "Point",
-	                        "coordinates": [2.6497258371718146, 39.56007902046164]
-	                    }
-	                }, {
-	                    "type": "Feature",
-	                    "properties": {
-	                        "message": "Baz",
-	                        "iconSize": [60, 60]
-	                    },
-	                    "geometry": {
-	                        "type": "Point",
-	                        "coordinates": [2.65454, 39.56642]
-	                    }
-	                }]
+	                "features": this.returnJSONCoordenates(this.props.hotels)
 	            };
 	
 	            var map = new mapboxgl.Map({
 	                container: 'map',
 	                style: 'mapbox://styles/mapbox/dark-v9',
-	                center: [2.6497258371718146, 39.56007902046164],
-	                zoom: 13
+	                center: this.firstCoordenate,
+	                zoom: 14
 	            });
 	
 	            // add markers to map
@@ -21969,19 +21970,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var el = document.createElement('div');
 	                el.className = 'marker';
 	                el.style.backgroundImage = 'url(https://d13yacurqjgara.cloudfront.net/users/763/screenshots/2425404/star-wars.png';
-	                el.style.backgroundPosition = '-179px -108px';
+	                el.style.backgroundPosition = marker.positionImage;
 	                el.style.backgroundSize = '423px 267px';
 	                el.style.borderRadius = '999px';
 	                el.style.width = marker.properties.iconSize[0] + 'px';
 	                el.style.height = marker.properties.iconSize[1] + 'px';
 	
-	                el.addEventListener('click', function () {
-	                    window.alert(marker.properties.message);
-	                });
-	
 	                // add marker to map
 	                new mapboxgl.Marker(el, { offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2] }).setLngLat(marker.geometry.coordinates).addTo(map);
 	            });
+	
+	            map.setLayoutProperty('country-label-lg', 'text-field', '{name_english}');
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.setMap();
+	        }
+	    }, {
+	        key: 'componentDidUpdate',
+	        value: function componentDidUpdate() {
+	            this.setMap();
 	        }
 	    }, {
 	        key: 'render',
